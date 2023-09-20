@@ -1,5 +1,5 @@
 module.exports = {
-    catalogUrl: null,
+    catalogUrl: "https://fim-public.s3.amazonaws.com/catalog.json",
     catalogTitle: "STAC Browser",
     allowExternalAccess: true, // Must be true if catalogUrl is not given
     allowedDomains: [],
@@ -21,10 +21,10 @@ module.exports = {
     ],
     apiCatalogPriority: null,
     useTileLayerAsFallback: true,
-    displayGeoTiffByDefault: false,
+    displayGeoTiffByDefault: true,
     buildTileUrlTemplate: ({href, asset}) => "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url=" + encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href),
     stacProxyUrl: null,
-    pathPrefix: "/",
+    pathPrefix: "/catalog/",
     historyMode: "history",
     cardViewMode: "cards",
     cardViewSort: "asc",
