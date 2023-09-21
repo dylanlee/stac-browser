@@ -1,0 +1,59 @@
+.logo-spacer {
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content: space-between;
+      width: 60em;
+      margin: auto;
+}
+
+.logo-inner {
+    display:flex;
+    justify-content: flex-start; /* Distributes items to the start of flex direction*/
+    align-items: center; /* Centers items along the cross axis */
+    flex-wrap: nowrap; /* Ensures items stay in a single line */
+    margin-top: .5em;
+}
+
+/* Style for the logo images */
+.logo-image {
+    height: 3em;
+    width: auto;
+    max-width: 3em; 
+    vertical-align: middle;
+}
+
+/* Style for the logo text */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    margin: 0 .5em; /* Add some spacing between the images and text */
+}
+
+/* Style for the main logo text */
+.main-text {
+    display: block;
+    font-size: 1.4em; /* Adjust this value to make the text height approximately equal to the image height */
+    margin-bottom: -.4em;
+}
+
+/* Style for the logo sub-text */
+.sub-text {
+    display: block;
+    font-size: .9em; /* Adjust this value to make the text height approximately equal to the image height */
+    align-self: center;
+    text-transform: uppercase;
+    color: #555;
+}
+.navigation{
+      display: flex;
+      flex-direction: row;
+      text-decoration: none;
+      align-items:center;
+}
+
+.navigation-items{
+      font-size: 1.3em; 
+      margin-right: calc(.5em + .7vw);
+  }

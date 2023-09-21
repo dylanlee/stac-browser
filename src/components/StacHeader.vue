@@ -2,12 +2,15 @@
   <b-row>
     <b-col md="12">
       <Source class="float-right" :title="title" :stacUrl="url" :stac="data" />
+<!--
+Don't need the catalog title part of the header
       <h1>
         <template v-if="icon">
           <img :src="icon.href" :alt="icon.title" :title="icon.title" class="icon mr-2">
         </template>
         <span class="title">{{ title }}</span>
       </h1>
+     -->
       <p class="lead" v-if="url || isSearchPage()">
         <i18n v-if="containerLink" tag="span" path="in" class="in mr-3">
           <template #catalog><StacLink :data="containerLink" /></template>
