@@ -15,6 +15,9 @@ This package has also been published to npm as [`@radiantearth/stac-browser`](ht
 It's not officially supported, but you may also be able to use it for
 certain *OGC API - Records* and *OGC API - Features* compliant servers.
 
+**Please note that STAC Browser is currently without funding for both maintenance, bug fixes and improvements. This means issues and PRs may be adressed very slowly.
+If you care about STAC Browser and have some funds to support the future of STAC Browser, please contact matthias@mohr.ws**
+
 **Table of Contents:**
 - [Examples](#examples)
 - [Get Started](#get-started)
@@ -45,6 +48,7 @@ The catalog section of [STAC Index](https://stacindex.org) is also built on top 
 First, you need to clone or download this repository.
 
 Then switch into the newly created folder and install all dependencies:
+
 ```bash
 npm install
 ```
@@ -127,6 +131,7 @@ If you've found metadata labels (e.g. "Price" and "Generation Time") that are no
 you can add it to the `custom.json`. For metadata fields you need to add it to a the object `fields`
 as it is the group for the metadata-related phrases.
 There you can add as many phrases as you like. For example:
+
 ```json
 {
   "fields": {
@@ -200,7 +205,8 @@ To add the phrases mentioned above you need to go through the folders in `src/lo
 All new phrases must be added to the property `fields`.
 
 Below you can find an example of an updated `custom.json` for the German language (folder `de`). It also includes the `authConfig`, which is contained in the file by default for [other purposes](docs/options.md#authconfig).
-```
+
+```json
 {
   "authConfig": {
     "description": ""
@@ -236,19 +242,62 @@ STAC Browser supports some non-standardized extensions to the STAC specification
 
 ## Docker
 
-When building the Dockerfile, you can add the [`catalogUrl`](docs/options.md#catalogurl) 
-as a [build argument](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg). For example:
+### Create a custom image
 
+Building the Dockerfile without changing any build options:
+
+```bash
+docker build -t stac-browser:v1 .
 ```
-docker build -t stac-browser:v1 --build-arg catalogURL=https://planetarycomputer.microsoft.com/api/stac/v1/ .
+
+Run the container for a specific URL:
+
+```bash
+docker run -p 8080:8080 -e SB_catalogUrl="https://earth-search.aws.element84.com/v1/" stac-browser:v1
 ```
 
-If more arguments need to be passed to `npm run build`, you can add them to the Dockerfile as needed.
+STAC Browser is now available at `http://localhost:8080`
 
-To run the container:
+---
 
+You can pass further options to STAC Browser to customize it to your needs.
+
+The build-only options
+[`pathPrefix`](docs/options.md#pathprefix) and [`historyMode`](docs/options.md#historymode)
+can be provided as a
+[build argument](https://docs.docker.com/engine/reference/commandline/build#set-build-time-variables---build-arg)
+when building the Dockerfile.
+
+For example:
+
+```bash
+docker build -t stac-browser:v1 --build-arg pathPrefix="/browser/" --build-arg historyMode=hash .
 ```
-docker run -p 8080:8080 stac-browser:v1
+
+All other options, except the ones that are explicitly excluded from CLI/ENV usage,
+can be passed as environment variables when running the container.
+For example, to run the container with a pre-defined
+[`catalogUrl`](docs/options.md#catalogurl) and [`catalogTitle`](docs/options.md#catalogtitle):
+
+```bash
+docker run -p 8080:8080 -e SB_catalogUrl="https://earth-search.aws.element84.com/v1/" -e SB_catalogTitle="Earth Search" stac-browser:v1
+```
+
+If you want to pass all the other arguments to `npm run build` directly, you can modify to the Dockerfile as needed.
+
+STAC browser is now available at `http://localhost:8080/browser`
+
+### Use an existing image
+
+Since version 3.1.1, you can add an existing image from [Packages](https://github.com/radiantearth/stac-browser/pkgs/container/stac-browser) to your docker-compose.yml:
+```
+services:
+  stac-browser:
+    image: ghcr.io/radiantearth/stac-browser:latest
+    ports:
+      - 8080:8080
+    environment:
+      SB_catalogUrl: "https://localhost:7188"
 ```
 
 ## Contributing
@@ -289,7 +338,7 @@ You can also use one of the existing languages and provide an alternate version 
 - Once completed, please open a pull request and we'll get back to you as soon as possible.
 - After merging the PR for the first time, we'll add you to our translation management tool Crowdin: <https://crowdin.com/project/stac-browser/>. Please get in touch to get your invite!
 
-# Sponsors
+## Sponsors
 
 The following sponsors have provided a subststantial amount of funding for STAC Browser in the past:
 
@@ -298,6 +347,3 @@ The following sponsors have provided a subststantial amount of funding for STAC 
 - [Matthias Mohr - Softwareentwicklung](https://mohr.ws) (maintenance)
 - [Spacebel](https://spacebel.com) (collection search)
 - [Planet](https://planet.com) (OpenID Connect authentication, other features, maintenance)
-
-**Please note that STAC Browser is currently mostly without funding for both maintenance, bug fixes and improvements.
-If you care about STAC Browser and have some funds to support the future of STAC Browser, please contact me: matthias@mohr.ws**
