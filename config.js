@@ -1,5 +1,5 @@
 module.exports = {
-    catalogUrl: "https://fim-public.s3.amazonaws.com/catalog.json",
+    catalogUrl: "https://d1n9wp7f565qo.cloudfront.net/private/catalog.json",
     catalogTitle: "STAC Browser",
     allowExternalAccess: true, // Must be true if catalogUrl is not given
     allowedDomains: [],
@@ -24,7 +24,7 @@ module.exports = {
     displayGeoTiffByDefault: true,
     buildTileUrlTemplate: ({href, asset}) => "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url=" + encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href),
     stacProxyUrl: null,
-    pathPrefix: "/catalog/",
+    pathPrefix: "/shhcat/",
     historyMode: "history",
     cardViewMode: "cards",
     cardViewSort: "asc",
@@ -35,9 +35,13 @@ module.exports = {
     itemsPerPage: 12,
     defaultThumbnailSize: null,
     maxPreviewsOnMap: 50,
-    crossOriginMedia: null,
+    crossOriginMedia: "anonymous",
     requestHeaders: {},
     requestQueryParameters: {},
     preprocessSTAC: null,
-    authConfig: null
+    authConfig: {
+      type: 'header',
+      key: 'Authorization', 
+      formatter: token => `Bearer ${token}` 
+      }
 };

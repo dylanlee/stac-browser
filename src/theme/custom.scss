@@ -1,18 +1,33 @@
+.top-nav {
+  position: relative;
+  line-height: 30px;
+  border-bottom: 1px solid #056FB7; 
+  margin: 0px;
+  background-image: linear-gradient(#fff, #f4f5f5);
+  margin-bottom:1em;
+  margin-left:-1rem;
+  margin-right:-1rem;
+  overflow: visible;
+  box-shadow: 0px .5px 1px rgba(5, 111, 183, 0.2);
+}
+
 .logo-spacer {
       display:flex;
       flex-direction:row;
       align-items:center;
       justify-content: space-between;
-      width: 60em;
-      margin: auto;
+      max-width: 60em;
+      margin: auto; 
 }
 
 .logo-inner {
     display:flex;
     justify-content: flex-start; /* Distributes items to the start of flex direction*/
-    align-items: center; /* Centers items along the cross axis */
-    flex-wrap: nowrap; /* Ensures items stay in a single line */
-    margin-top: .5em;
+    align-items: center; 
+    flex-wrap: nowrap; 
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 0.7em;
 }
 
 /* Style for the logo images */
@@ -48,12 +63,94 @@
 }
 .navigation{
       display: flex;
-      flex-direction: row;
+      align-items: center;
       text-decoration: none;
-      align-items:center;
+      justify-content: space-between;
+      margin-left: 1em;
 }
+  .navigation > div{
+      display:flex;
+      align-items:center;
+  }
 
-.navigation-items{
+  .navigation-items > *:not(:last-child){
       font-size: 1.3em; 
       margin-right: calc(.5em + .7vw);
   }
+
+.search-box {
+    transition: all .2s ease-in-out;
+    width: 2.5rem;
+    height: 1.75rem; 
+    padding: 4px 6px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    margin-right:1.2em; 
+    margin-top:0.6em;
+    outline: 0;
+}
+
+.search-box::placeholder {
+    text-align: right;
+}
+
+.search-box:hover, .search-box:not(:placeholder-shown) {
+    border: 2px solid #056FB7;
+}
+
+.search-box:active, .search-box:focus, .search-box:not(:placeholder-shown) {
+    width: 10rem;
+}
+
+/* Hide the hamburger menu on big screens*/
+#menuToggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+@media(max-width:59.99em) {
+  .logo-spacer{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      margin: auto;
+  }
+
+.hamburger {
+    display: flex;
+    margin-right: .5em;
+}
+/* Initially hide the nav items*/
+.navigation {
+    position: absolute;
+    top: 4.2em; /* set to bottom of top-nav header container */
+    left: -20px;
+    right: 0;
+    display: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+.navigation-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+  .navigation-items > *:not(:last-child){
+      font-size: 1.3em; 
+      margin-right: calc(.5em + .7vw);
+  }
+
+/* Show the nav items when the checkbox is checked */
+#menuToggle:checked + .hamburger + .navigation {
+    display: block;
+}
+}
+
