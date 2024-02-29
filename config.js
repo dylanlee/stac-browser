@@ -1,5 +1,5 @@
 module.exports = {
-    catalogUrl: "https://d1n9wp7f565qo.cloudfront.net/private/catalog.json",
+    catalogUrl: "https://d2xj3zwvbo9xux.cloudfront.net/catalog.json",
     catalogTitle: "STAC Browser",
     allowExternalAccess: true, // Must be true if catalogUrl is not given
     allowedDomains: [],
@@ -42,6 +42,7 @@ module.exports = {
     authConfig: {
       type: 'header',
       key: 'Authorization', 
-      formatter: token => `Bearer ${token}` 
+      formatter: token => `${token}`,
+      description: `Please retrieve the token from our <here>.\n\nFor further questions contact <mailto:support@example.com>.`
       }
 };
