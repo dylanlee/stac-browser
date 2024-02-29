@@ -62,6 +62,11 @@ export default {
     StacLink,
     Source
   },
+  data() {
+    return {
+      authRequested: false
+    };
+  },
   computed: {
     ...mapState(['allowSelectCatalog', 'authConfig', 'authData', 'catalogUrl', 'data', 'url', 'title']),
     ...mapGetters(['canSearch', 'root', 'parentLink', 'collectionLink', 'toBrowserPath']),
@@ -126,9 +131,18 @@ export default {
       return this.collectionLink || this.parentLink;
     }
   },
+  mounted() {
+    this.checkAuth();
+  },
   methods: {
     isSearchPage() {
       return this.$router.currentRoute.name === 'search';
+    },
+    checkAuth() {
+      if (this.authConfig && !this.authRequested) {
+        this.authRequested = true;
+        this.auth();
+      }
     },
     auth() {
       this.$store.commit('requestAuth', () => this.$store.dispatch("load", {
@@ -147,3 +161,4 @@ h1 {
   word-break: break-word;
 }
 </style>
+
