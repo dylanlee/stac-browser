@@ -1,5 +1,5 @@
 module.exports = {
-    catalogUrl: "https://d2xj3zwvbo9xux.cloudfront.net/catalog.json",
+    catalogUrl: "https://dxuqxlc46kb43.cloudfront.net/catalog2.json",
     catalogTitle: "STAC Browser",
     allowExternalAccess: true, // Must be true if catalogUrl is not given
     allowedDomains: [],
@@ -43,6 +43,6 @@ module.exports = {
       type: 'header',
       key: 'Authorization', 
       formatter: token => `${token}`,
-      description: `Please retrieve the token from our <here>.\n\nFor further questions contact <mailto:support@example.com>.`
+      description: `Please retrieve the token from our token request page which can be found at https://waternode.ciroh.org/request_token.html.\n\nFor further questions please contact the current WPN operations manager.`
       }
 };
