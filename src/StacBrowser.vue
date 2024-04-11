@@ -65,9 +65,8 @@
           <div class="navigation">
             <div class="navigation-items">
               <div>
-                <a href="https://waternode.ciroh.org/catalog/">data catalog</a>
+                <a href="https://waternode.ciroh.org/access_data.html">access data</a>
               </div>
-              <div><a href="/projects.html">projects</a></div>
               <div><a href="/learn.html">learn</a></div>
               <div><a href="/about.html">about</a></div>
               <div>

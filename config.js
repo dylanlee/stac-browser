@@ -32,7 +32,7 @@ module.exports = {
     stacLint: true,
     geoTiffResolution: 128,
     redirectLegacyUrls: false,
-    itemsPerPage: 12,
+    itemsPerPage: 1000,
     defaultThumbnailSize: [256,256],
     maxPreviewsOnMap: 50,
     crossOriginMedia: null,
